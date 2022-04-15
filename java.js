@@ -116,4 +116,4 @@ pa.addEventListener('click', reenable);
 const box = document.querySelector('.box');
 
 const para = document.createElement('p');
-para.style.cssText = 'font-size: 30px; color: black; whiteSpace: pre;';
+para.style.cssText = 'font-size: 25px; color: black; white-space: pre;';
