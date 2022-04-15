@@ -87,13 +87,13 @@ function game(e) {
         btns.forEach(btn => btn.disabled = true);
     }
     else if (pctr === 5) {
-        para.textContent = `You won the game!` + `\r\n` + `Click play again button to play new Round`;
+        para.textContent = `                    You won the game!` + `\r\n` + `Click play again button to play new Round`;
         box.appendChild(para);
         console.log("You won the game!");
         btns.forEach(btn => btn.disabled = true);
     }
     else if (compctr === 5) {
-        para.textContent = `Computer Wins!` + '\r\n' + `Click play again button to play new Round`;
+        para.textContent = `                    Computer Wins!` + '\r\n' + `Click play again button to play new Round`;
         box.appendChild(para);
         console.log("Computer Wins!");
         btns.forEach(btn => btn.disabled = true);
@@ -102,7 +102,7 @@ function game(e) {
 
 function reenable(e) {
     ctr = pctr = compctr = 0;
-    para.textContent = `Start Round: Score: 0 - 0`;
+    para.textContent = `Start Round: Score: Human 0 - Computer 0`;
     box.appendChild(para);
     btns.forEach(btn => btn.disabled = false);
 }
@@ -116,4 +116,6 @@ pa.addEventListener('click', reenable);
 const box = document.querySelector('.box');
 
 const para = document.createElement('p');
+para.textContent = `Start Round: Score: Human 0 - Computer 0`;
 para.style.cssText = 'font-size: 25px; color: black; white-space: pre;';
+box.appendChild(para);
