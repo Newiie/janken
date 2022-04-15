@@ -4,46 +4,116 @@ function computerPlay() {
     return x;
 }
 
-let ctr = 0;
+let ctr = 0, compctr = 0, pctr = 0;
+
 function playRound(player, computer)
 {
     if (player.toLowerCase() == 'rock' && computer == 'scissors')
     {
-        console.log("You won!");
-        ctr++;
+        ++ctr;
+        ++pctr;
+        para.textContent = `Round ${ctr} Score = ${pctr} - ${compctr}`;
+        box.appendChild(para);
+        // box.appendChild(`You won round ${ctr} Score = ${pctr} - ${compctr}`);
+        console.log(`You won round ${ctr} Score = ${pctr} - ${compctr}`);
     }
     else if (player.toLowerCase() == 'scissors' && computer == 'rock')
     {
-        console.log("You Lose! Paper beats Rock");  
+        ctr++; 
+        compctr++;
+        para.textContent = `Round ${ctr} Score = ${pctr} - ${compctr}`;
+        box.appendChild(para);
+        // box.appendChild(`You Lose! Paper beats Rock  Score = ${pctr} - ${compctr}`);
+        console.log(`You Lose! Paper beats Rock  Score = ${pctr} - ${compctr}`); 
     }   
     else if (player.toLowerCase() == 'paper' && computer == 'scissors')
     {
-        console.log("You Lose! Paper beats Rock");
+        ctr++; 
+        compctr++;
+        para.textContent = `Round ${ctr} Score = ${pctr} - ${compctr}`;
+        box.appendChild(para);
+        // box.appendChild(`You Lose! Paper beats Rock  Score = ${pctr} - ${compctr}`);
+        console.log(`You Lose! Paper beats Rock  Score = ${pctr} - ${compctr}`);
     }
     else if (player.toLowerCase() == 'scissors' && computer == 'paper')
     {
-        console.log("You won!");
-        ctr++;
+        ++ctr;
+        ++pctr;
+        para.textContent = `Round ${ctr} Score = ${pctr} - ${compctr}`;
+        box.appendChild(para);
+        // box.appendChild(`You won round ${ctr} Score = ${pctr} - ${compctr}`);
+        console.log(`You won round ${ctr} Score = ${pctr} - ${compctr}`);
     }
     else if (player.toLowerCase() == 'rock' && computer == 'paper')
     {
-        console.log("You Lose! Paper beats RockP1");
+        ++ctr;
+        ++compctr;
+        para.textContent = `Round ${ctr} Score = ${pctr} - ${compctr}`;
+        box.appendChild(para);
+        // box.appendChild(`You Lose! Paper beats Rock  Score = ${pctr} - ${compctr}`);
+        console.log(`You Lose! Paper beats Rock  Score = ${pctr} - ${compctr}`);
     }
     else if (player.toLowerCase() == 'paper' && computer == 'rock')
     {
-        console.log("You won!");
-        ctr++;
+        ++ctr;
+        ++pctr;
+        para.textContent = `Round ${ctr} Score = ${pctr} - ${compctr}`;
+        box.appendChild(para);
+        // box.appendChild(`You won round ${ctr} Score = ${pctr} - ${compctr}`);
+        console.log(`You won round ${ctr} Score = ${pctr} - ${compctr}`);
     }
     else
     {
-        console.log("Tie!");
+        ctr++;
+        pctr++;
+        compctr++;
+        para.textContent = `Round ${ctr} Score = ${pctr} - ${compctr}`;
+        box.appendChild(para);
+        // box.appendChild(`Tie! round ${ctr} Score = ${pctr} - ${compctr}`);
+        console.log(`Round ${ctr} Score = ${pctr} - ${compctr}`);
     }
 }
 
-for (let i = 0; i < 5; i++)
-{
-    let playerSelection = window.prompt("Select your hand", "Rock");
+
+function game(e) {
+    let playerSelection = e.target.textContent;
     const computerSelection = computerPlay();
     playRound(playerSelection, computerSelection); 
-    console.log(`Your Wins ${ctr}`);
+    console.log(`Your Wins ${pctr}`);
+    if (pctr === 5 && compctr === 5)
+    {
+        para.textContent = `You are tied with the Computer`;
+        box.appendChild(para);
+        btns.forEach(btn => btn.disabled = true);
+    }
+    else if (pctr === 5) {
+        para.textContent = `You won the game!` + `\r\n` + `Click play again button to play new Round`;
+        box.appendChild(para);
+        console.log("You won the game!");
+        btns.forEach(btn => btn.disabled = true);
+    }
+    else if (compctr === 5) {
+        para.textContent = `Computer Wins!` + '\r\n' + `Click play again button to play new Round`;
+        box.appendChild(para);
+        console.log("Computer Wins!");
+        btns.forEach(btn => btn.disabled = true);
+    }
 }
+
+function reenable(e) {
+    ctr = pctr = compctr = 0;
+    para.textContent = `Start Round: Score: 0 - 0`;
+    box.appendChild(para);
+    btns.forEach(btn => btn.disabled = false);
+}
+
+const btns = Array.from(document.querySelectorAll('.btn'));
+btns.forEach(btn => btn.addEventListener('click', game));
+
+const pa = document.querySelector('.pa');
+pa.addEventListener('click', reenable);
+
+const box = document.querySelector('.box');
+
+const para = document.createElement('p');
+para.style.cssText = 'font-size: 30px; color: black; whiteSpace: pre;';

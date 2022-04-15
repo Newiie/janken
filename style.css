@@ -1,0 +1,45 @@
+.gameBtn {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.gameBtn .btn, .pa{
+    border: 3px solid black;
+    
+}
+
+.box {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    height: 200px;
+    width: 500px;
+}
+
+.result, .headContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.headContainer {
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.result, .pa {
+    margin: 10px 0;
+}
+
+.result {
+    margin-top: 0px;
+}
+
+.result, .btn, .pa {
+    font-size: 25px;
+}
+
